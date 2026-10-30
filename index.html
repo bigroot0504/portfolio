@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>신대근 · Product Owner</title>
+<meta name="description" content="흩어진 고객의 요구를 하나로 모아, 정말 원하는 제품을 만드는 PO 신대근의 포트폴리오">
+<meta property="og:title" content="DAEGEUN — many voices, one product.">
+<meta property="og:description" content="흩어진 고객의 요구를 하나로 모아, 정말 원하는 제품을 만드는 PO 신대근의 포트폴리오">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#05060A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2305060A'/%3E%3Cpath d='M4 16c3 0 3-8 6-8s3 16 6 16 3-12 6-12 3 4 6 4' fill='none' stroke='%239DB4FF' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ───────── 기본 ───────── */
+:root {
+  --bg: #05060A;
+  --surface: #0B0E16;
+  --surface-2: #111523;
+  --line: rgba(232, 236, 245, .10);
+  --line-2: rgba(232, 236, 245, .20);
+  --text: #E8ECF5;
+  --muted: #8A93A6;
+  --dim: #5A6275;
+  --accent: #9DB4FF;
+  --accent-strong: #C6D3FF;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --ease-io: cubic-bezier(.7, 0, .2, 1);
+  --gutter: clamp(20px, 4vw, 56px);
+  --maxw: 1240px;
+  --f-display: 'Inter Tight', 'Pretendard Variable', Pretendard, system-ui, sans-serif;
+  --f-ko: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--f-ko); font-size: 16px; line-height: 1.7; letter-spacing: -.01em;
+  word-break: keep-all; overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--accent); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+#field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+main, footer { position: relative; z-index: 1; }
+
+/* ───────── 위 메뉴 ───────── */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px var(--gutter);
+  transition: opacity .5s var(--ease), transform .5s var(--ease), background .4s, border-color .4s;
+  border-bottom: 1px solid transparent;
+}
+.topbar.off { opacity: 0; transform: translateY(-12px); pointer-events: none; }
+.topbar.solid { background: rgba(5, 6, 10, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+.logo { font-family: var(--f-display); font-weight: 500; letter-spacing: .08em; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+.logo svg { width: 22px; height: 14px; }
+.nav { display: flex; gap: clamp(14px, 2.4vw, 32px); }
+.nav a { color: var(--muted); transition: color .3s; position: relative; padding: 4px 0; }
+.nav a:hover, .nav a[aria-current="true"] { color: var(--text); }
+.nav a[aria-current="true"]::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--accent); }
+@media (max-width: 640px) { .nav a:not(.keep) { display: none; } }
+
+/* ───────── 첫 화면 (고정 구간) ───────── */
+.hero { position: relative; height: 330vh; }
+.hero-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.hero-meta { position: absolute; top: 22px; left: var(--gutter); right: var(--gutter); display: flex; justify-content: space-between; color: var(--muted); }
+.hero-bottom { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(24px, 6vh, 64px); }
+.wordmark {
+  margin: 0; font-family: var(--f-display); font-weight: 200;
+  font-size: clamp(64px, 17.5vw, 290px); line-height: .82; letter-spacing: -.035em;
+  transform-origin: 0 100%; will-change: transform, opacity; white-space: nowrap;
+}
+.wordmark .ch { display: inline-block; }
+html.js .wordmark .ch { opacity: 0; transform: translate3d(var(--dx, 0), 40%, 0); filter: blur(10px); }
+html.js.ready .wordmark .ch { opacity: 1; transform: none; filter: none; transition: opacity 1.1s var(--ease), transform 1.4s var(--ease), filter 1.2s var(--ease); transition-delay: var(--d, 0s); }
+.hero-sub { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-top: clamp(14px, 2.4vh, 26px); }
+.hero-sub .en { font-family: var(--f-display); font-weight: 300; font-size: clamp(18px, 2vw, 26px); color: var(--accent); letter-spacing: -.01em; margin: 0; }
+.hero-sub .ko { color: var(--muted); margin: 4px 0 0; font-size: 15px; }
+.hud { display: flex; align-items: center; gap: 12px; color: var(--muted); flex-shrink: 0; }
+.meter { display: flex; align-items: center; gap: 3px; height: 22px; }
+.meter i { display: block; width: 2px; height: 4px; background: var(--accent); border-radius: 1px; }
+.hud-val b { color: var(--text); font-weight: 500; }
+.hint { position: absolute; top: 50%; left: var(--gutter); color: var(--dim); }
+html.js .hero-fade { opacity: 0; transition: opacity 1.2s var(--ease) .9s; }
+html.js.ready .hero-fade { opacity: var(--f, 1); transition-duration: .2s; transition-delay: 0s; }
+html.js.ready.intro-done .hero-fade { transition: none; }
+.says {
+  position: absolute; right: var(--gutter); top: 15vh; margin: 0; text-align: right;
+  font-family: var(--f-ko); font-weight: 300; font-size: clamp(28px, 6vw, 96px); line-height: 1.08; letter-spacing: -.04em;
+}
+.says span { display: block; transform: translate3d(var(--x, 30vw), 0, 0); opacity: var(--o, 0); will-change: transform, opacity; }
+.says span:nth-child(2) { font-weight: 500; }
+.says span:nth-child(3) { font-weight: 700; color: var(--accent-strong); }
+.voices { position: absolute; inset: 0; pointer-events: none; }
+html.js .voices { opacity: 0; transition: opacity 1.6s var(--ease) 1.3s; }
+html.js.ready .voices { opacity: 1; }
+.voice {
+  position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform, opacity;
+  font-size: 14px; letter-spacing: -.02em; color: var(--text);
+  padding: 6px 13px; border-radius: 99px 99px 99px 4px;
+  background: rgba(14, 18, 30, .72); border: 1px solid rgba(157, 180, 255, .32);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+@media (max-width: 640px) { .voice { font-size: 12px; padding: 5px 10px; } .voice:nth-child(n+5) { display: none; } }
+.says-cap { position: absolute; right: var(--gutter); bottom: clamp(28px, 7vh, 72px); max-width: 360px; text-align: right; color: var(--muted); margin: 0; opacity: 0; }
+@media (max-width: 640px) {
+  .hero-sub { flex-direction: column; align-items: flex-start; }
+  .hint { display: none; }
+  .says { top: 13vh; }
+}
+
+/* ───────── 공통 섹션 ───────── */
+.section { padding: clamp(110px, 18vh, 200px) var(--gutter); max-width: calc(var(--maxw) + var(--gutter) * 2); margin: 0 auto; scroll-margin-top: 40px; }
+.sec-head { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: clamp(48px, 8vh, 88px); }
+.sec-k { color: var(--accent); display: flex; align-items: center; gap: 12px; }
+.sec-k::before { content: ''; width: 28px; height: 1px; background: currentColor; }
+.sec-title { margin: 0; font-family: var(--f-display); font-weight: 300; font-size: clamp(44px, 7vw, 104px); line-height: .95; letter-spacing: -.04em; }
+
+/* 화면에 들어오면 떠오름 */
+html.js .rv { opacity: 0; transform: translate3d(0, 36px, 0); transition: opacity 1s var(--ease), transform 1.2s var(--ease); transition-delay: var(--d, 0s); }
+html.js .rv.in { opacity: 1; transform: none; }
+.lines .ln { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
+.lines .ln > span { display: inline-block; }
+html.js .lines .ln > span { transform: translate3d(0, 108%, 0); transition: transform 1.25s var(--ease); transition-delay: var(--d, 0s); }
+html.js .lines.in .ln > span { transform: none; }
+
+/* ───────── 소개 ───────── */
+.about-lead { margin: 0 0 clamp(40px, 6vh, 64px); font-weight: 300; font-size: clamp(30px, 4.6vw, 68px); line-height: 1.2; letter-spacing: -.045em; }
+.about-lead b { font-weight: 600; color: var(--accent-strong); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.about-body { font-size: clamp(16px, 1.3vw, 18px); color: #C4CBD9; margin: 0; }
+.about-body strong { color: var(--text); font-weight: 600; }
+.facts { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.facts dt { color: var(--dim); padding-top: 3px; }
+.facts dd { margin: 0; }
+.facts dd small { display: block; color: var(--muted); font-size: 14px; }
+
+.listen { margin-top: clamp(96px, 14vh, 160px); }
+.listen-k { color: var(--muted); margin-bottom: 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.listen-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px clamp(24px, 3vw, 44px); }
+.listen-list li { border-top: 1px solid var(--line-2); padding-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+.listen-no { color: var(--accent); }
+.listen-list h3 { margin: 22px 0 0; font-size: clamp(21px, 1.9vw, 27px); font-weight: 600; letter-spacing: -.035em; line-height: 1.3; }
+.listen-list p { margin: 0; color: var(--muted); font-size: 15px; }
+.listen-wave { height: 28px; width: 100%; }
+.listen-wave path { fill: none; stroke: var(--accent); stroke-width: 1.2; opacity: .7; }
+@media (max-width: 1100px) { .listen-list { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .listen-list { grid-template-columns: 1fr; }
+}
+
+/* ───────── 경력 ───────── */
+.xp { border-top: 1px solid var(--line); padding-top: clamp(28px, 4vh, 40px); }
+.xp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.xp-co { margin: 0; font-family: var(--f-display); font-weight: 300; font-size: clamp(40px, 5vw, 72px); letter-spacing: -.045em; line-height: 1; }
+.xp-role { margin: 12px 0 0; color: var(--muted); }
+.xp-when { color: var(--dim); }
+.xp-desc { margin: clamp(28px, 4vh, 40px) 0 0; max-width: 640px; color: #C4CBD9; font-size: clamp(16px, 1.3vw, 18px); }
+.nums { margin: clamp(48px, 8vh, 80px) 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.nums dt { font-family: var(--f-display); font-weight: 200; font-size: clamp(44px, 5vw, 76px); line-height: 1; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.nums dt small { font-size: .4em; font-weight: 300; margin-left: 4px; letter-spacing: 0; color: var(--muted); }
+.nums dd { margin: 14px 0 0; color: var(--muted); font-size: 15px; }
+@media (max-width: 760px) { .nums { grid-template-columns: 1fr; gap: 36px; } }
+
+/* ───────── 목록 (프로젝트 · 데이터) ───────── */
+.sec-sub { margin: 14px 0 0; color: var(--muted); max-width: 600px; font-size: clamp(16px, 1.3vw, 18px); }
+.idx { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.idx-row {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) auto 28px; gap: 8px 24px; align-items: baseline;
+  padding: clamp(26px, 4vh, 38px) 0; border-bottom: 1px solid var(--line);
+  transition: opacity .45s var(--ease), padding .55s var(--ease);
+}
+.idx .n { color: var(--dim); }
+.idx .t { font-size: clamp(22px, 2.5vw, 36px); font-weight: 500; letter-spacing: -.045em; line-height: 1.25; transition: color .35s; }
+.idx .t small { display: block; margin-top: 8px; font-size: 15px; font-weight: 400; letter-spacing: -.01em; color: var(--muted); line-height: 1.6; }
+.idx .m { color: var(--dim); white-space: nowrap; }
+.idx .go { color: var(--dim); font-size: 20px; transition: transform .5s var(--ease), color .35s; }
+.idx-data .idx-row { grid-template-columns: 64px minmax(0, 1fr) auto; }
+.idx-data .t { font-size: clamp(20px, 2vw, 28px); }
+@media (hover: hover) {
+  .idx:hover .idx-row { opacity: .32; }
+  .idx .idx-row:hover { opacity: 1; padding-left: 14px; }
+  .idx-row:hover .t { color: var(--accent-strong); }
+  .idx-row:hover .go { color: var(--accent); transform: translateX(6px); }
+}
+@media (max-width: 760px) {
+  .idx-row, .idx-data .idx-row { grid-template-columns: 40px minmax(0, 1fr) 20px; }
+  .idx .m { grid-column: 2; grid-row: 2; }
+  .idx-data .m { grid-row: 2; }
+}
+
+/* 마우스를 따라다니는 미리보기 */
+.peek { position: fixed; left: 0; top: 0; z-index: 30; pointer-events: none; width: 300px; height: 188px; }
+.peek-in { width: 100%; height: 100%; border-radius: 12px; overflow: hidden; background: var(--surface); border: 1px solid var(--line-2); opacity: 0; transform: scale(.9); transition: opacity .3s var(--ease), transform .45s var(--ease); }
+.peek.on .peek-in { opacity: 1; transform: none; }
+.peek canvas { width: 100%; height: 100%; display: block; }
+@media (hover: none), (pointer: coarse) { .peek { display: none; } }
+
+/* ───────── 연대기 ───────── */
+.years { border-top: 1px solid var(--line); }
+.yb { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(0, 2.6fr); gap: 0 clamp(24px, 5vw, 80px); padding: clamp(48px, 8vh, 88px) 0; border-bottom: 1px solid var(--line); }
+.yr { position: sticky; top: 96px; align-self: start; margin: 0; font-family: var(--f-display); font-weight: 200; font-size: clamp(56px, 7.5vw, 120px); line-height: .9; letter-spacing: -.05em; font-variant-numeric: tabular-nums; color: var(--dim); transition: color .6s var(--ease); }
+.yr small { display: block; margin-top: 14px; font-family: var(--f-ko); font-size: 15px; font-weight: 400; letter-spacing: -.01em; color: var(--dim); transition: color .6s var(--ease); }
+.yb.now .yr { color: var(--text); }
+.yb.now .yr small { color: var(--accent); }
+.evs { list-style: none; margin: 0; padding: 0 0 0 clamp(20px, 2.6vw, 36px); border-left: 1px solid var(--line); transition: border-color .6s var(--ease); display: grid; gap: clamp(40px, 6vh, 64px); }
+.yb.now .evs { border-color: var(--accent); }
+.ev { position: relative; }
+.ev::before { content: ''; position: absolute; left: calc(-1 * clamp(20px, 2.6vw, 36px) - 4.5px); top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--bg); border: 1px solid var(--dim); transition: background .5s, border-color .5s; }
+.yb.now .ev::before { background: var(--accent); border-color: var(--accent); }
+.ev-when { display: flex; gap: 14px; flex-wrap: wrap; margin: 0 0 10px; color: var(--dim); }
+.ev-kind { color: var(--accent); }
+.ev h3 { margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 600; letter-spacing: -.045em; line-height: 1.3; }
+.ev-role { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+.ev-desc { margin: 14px 0 0; max-width: 640px; color: #C4CBD9; }
+.ev-desc b { color: var(--accent-strong); font-weight: 600; }
+.yr .age { display: block; margin-bottom: 6px; font-size: 12px; color: var(--dim); transition: color .6s var(--ease); }
+.yb.now .yr .age { color: var(--muted); }
+.ev-has { color: var(--muted); border: 1px solid var(--line-2); border-radius: 99px; padding: 0 8px; font-size: 10px; line-height: 18px; }
+/* 마우스를 올리면 사진 · 영상 · 파일이 열림 */
+.ev-media { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .7s var(--ease), opacity .5s var(--ease); }
+.ev-media-in { overflow: hidden; display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+.ev.has-media:hover .ev-media, .ev.has-media:focus-within .ev-media, .ev.has-media.open .ev-media { grid-template-rows: 1fr; opacity: 1; }
+.ev.has-media:hover .ev-has { color: var(--accent); border-color: var(--accent); }
+.mtile { display: block; margin-top: 22px; height: clamp(200px, 26vw, 300px); border-radius: 10px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); flex: none; }
+.mtile img, .mtile video { display: block; height: 100%; width: auto; object-fit: cover; transition: transform 1s var(--ease); }
+a.mtile:hover img { transform: scale(1.03); }
+.mdoc { position: relative; height: auto; width: min(100%, 360px); }
+.mdoc img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
+.mthesis img { aspect-ratio: 4 / 3; }
+.mslide { height: auto; width: min(100%, 300px); }
+.ev-media-in:has(.mslide) > .mtile { width: calc((100% - 24px) / 3); }
+@media (max-width: 640px) { .ev-media-in:has(.mslide) > .mtile { width: calc((100% - 12px) / 2); } }
+.mslide img { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.mdl { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 14px 16px; color: var(--text); border-top: 1px solid var(--line); transition: color .3s; }
+.mdl small { color: var(--dim); font-size: 10px; }
+.mdoc:hover .mdl { color: var(--accent-strong); }
+.mdoc.missing { pointer-events: none; opacity: .5; }
+@media (hover: none) { .ev.has-media .ev-media { grid-template-rows: 1fr; opacity: 1; } }
+@media (max-width: 640px) { .mtile { height: 220px; } .mdoc { height: auto; } }
+.ev .nums { margin-top: 32px; }
+.ev .nums dt { font-size: clamp(36px, 3.6vw, 54px); }
+.idx-sub { margin-top: 28px; }
+.idx-sub .idx-row { grid-template-columns: 40px minmax(0, 1fr) auto 24px; padding: 20px 0; }
+.idx-sub li > div.idx-row { grid-template-columns: 40px minmax(0, 1fr) auto; }
+.idx-sub .t { font-size: clamp(17px, 1.5vw, 20px); font-weight: 600; letter-spacing: -.03em; }
+.idx-sub .t small { font-size: 14px; margin-top: 4px; }
+@media (max-width: 860px) {
+  .yb { grid-template-columns: 1fr; gap: 28px; }
+  .yr { position: static; font-size: clamp(52px, 16vw, 80px); }
+  .yr small { display: inline; margin: 0 0 0 12px; }
+}
+@media (max-width: 760px) {
+  .idx-sub .idx-row, .idx-sub li > div.idx-row { grid-template-columns: 28px minmax(0, 1fr) 18px; }
+  .ev .nums { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .ev .nums dt { font-size: 30px; }
+  .ev .nums dd { font-size: 12px; margin-top: 8px; }
+}
+
+/* ───────── 그 밖의 활동 ───────── */
+.tl { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.tl li { display: grid; grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1.3fr); gap: 12px 32px; padding: 26px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.tl .when { color: var(--dim); font-variant-numeric: tabular-nums; }
+.tl h3 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.03em; line-height: 1.4; }
+.tl h3 small { display: block; font-size: 14px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.tl p { margin: 0; color: #B9C1D0; font-size: 15px; }
+.tl .kind { display: block; margin-bottom: 6px; color: var(--accent); font-size: 11px; }
+@media (max-width: 860px) { .tl li { grid-template-columns: 1fr; gap: 6px; } }
+
+.tools { margin-top: clamp(80px, 12vh, 130px); display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px); }
+.tools h3 { margin: 0 0 14px; color: var(--muted); font-weight: 400; }
+.tools > div { border-top: 1px solid var(--line); padding-top: 18px; }
+.tools ul { list-style: none; margin: 0; padding: 0; }
+.tools li { font-size: 15px; line-height: 2; color: #C4CBD9; }
+@media (max-width: 860px) { .tools { grid-template-columns: 1fr 1fr; } }
+
+/* ───────── 연락 ───────── */
+.contact { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px var(--gutter) 80px; }
+.contact-k { color: var(--accent); margin-bottom: 26px; }
+.contact-title { margin: 0; font-family: var(--f-display); font-weight: 200; font-size: clamp(64px, 13vw, 220px); line-height: .9; letter-spacing: -.05em; }
+.contact-ko { margin: 24px 0 44px; color: var(--muted); font-size: clamp(16px, 1.4vw, 19px); }
+.mail {
+  font-family: var(--f-display); font-weight: 300; font-size: clamp(22px, 3.4vw, 46px); letter-spacing: -.02em;
+  position: relative; padding: 6px 2px; display: inline-flex; align-items: center; gap: 14px;
+}
+.mail::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--accent); transform: scaleX(.25); transform-origin: left; transition: transform .7s var(--ease); }
+.mail:hover::after { transform: scaleX(1); }
+.mail-tip { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; color: var(--accent); min-width: 7em; text-align: left; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 14px 40px; justify-content: center; margin-top: 44px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 0 0 6px; font-size: 16px; color: var(--muted); border-bottom: 1px solid var(--line-2); transition: color .35s, border-color .35s; }
+.btn:hover, .btn.primary { color: var(--text); border-color: var(--accent); }
+footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 26px var(--gutter); border-top: 1px solid var(--line); color: var(--dim); }
+
+/* ───────── 프로젝트 상세 ───────── */
+.detail { position: fixed; inset: 0; z-index: 40; visibility: hidden; pointer-events: none; }
+.detail.open { visibility: visible; pointer-events: auto; }
+.detail-dim { position: absolute; inset: 0; background: rgba(2, 3, 6, .6); opacity: 0; transition: opacity .6s var(--ease); }
+.detail.open .detail-dim { opacity: 1; }
+.detail-panel {
+  position: absolute; inset: clamp(0px, 2.4vw, 28px) clamp(0px, 2.4vw, 28px) 0; background: var(--surface);
+  border: 1px solid var(--line); border-bottom: 0; border-radius: 24px 24px 0 0;
+  transform: translate3d(0, 104%, 0); transition: transform .85s var(--ease-io);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.detail.open .detail-panel { transform: none; }
+.d-bar { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 16px clamp(20px, 4vw, 56px); background: rgba(11, 14, 22, .85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); color: var(--muted); }
+.d-close { display: inline-flex; align-items: center; gap: 10px; padding: 6px 0; color: var(--text); transition: color .3s; }
+.d-close:hover { color: var(--accent); }
+.d-inner { max-width: 1080px; margin: 0 auto; padding: clamp(40px, 7vh, 80px) clamp(20px, 4vw, 56px) 80px; }
+.d-head { margin-bottom: clamp(40px, 7vh, 72px); }
+.d-client { color: var(--accent); margin: 0 0 14px; }
+.d-title { margin: 0; font-size: clamp(36px, 5.4vw, 76px); font-weight: 600; letter-spacing: -.05em; line-height: 1.08; }
+.d-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; color: var(--muted); }
+.d-lead { font-size: clamp(19px, 1.9vw, 26px); line-height: 1.6; letter-spacing: -.03em; margin: 0; color: var(--text); font-weight: 400; }
+.d-stats { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); gap: 24px; margin: clamp(40px, 7vh, 64px) 0; }
+.d-stats div { padding: 0; }
+.d-stats b { display: block; font-family: var(--f-display); font-weight: 200; font-size: clamp(34px, 3.8vw, 54px); letter-spacing: -.04em; line-height: 1.05; }
+.d-stats span { display: block; margin-top: 10px; color: var(--muted); font-size: 14px; }
+.d-sec { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px 40px; padding: clamp(32px, 5vh, 48px) 0; border-top: 1px solid var(--line); }
+.d-sec > h3 { margin: 0; color: var(--accent); font-weight: 400; padding-top: 4px; }
+.d-sec p { margin: 0; color: #C4CBD9; font-size: 17px; }
+.d-sec ul.learn { margin: 0; padding-left: 1.1em; color: #C4CBD9; font-size: 17px; display: grid; gap: 10px; }
+.issues { list-style: none; margin: 0; padding: 0; counter-reset: is; }
+.issue { counter-increment: is; display: grid; grid-template-columns: 1fr 1.35fr; gap: 10px 32px; padding: 22px 0; border-top: 1px solid var(--line); }
+.issue:first-child { border-top: 0; padding-top: 0; }
+.issue > div { padding: 0; }
+.issue .lbl { display: block; margin-bottom: 8px; color: var(--dim); font-size: 11px; }
+.issue .p .lbl::before { content: '0' counter(is) ' · '; color: var(--accent); }
+.issue .p strong { font-weight: 600; font-size: 17px; letter-spacing: -.03em; line-height: 1.45; display: block; }
+.issue .s p { font-size: 16px; }
+.d-next { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: clamp(48px, 8vh, 80px); padding: 32px 0; border-top: 1px solid var(--line-2); transition: color .35s; }
+.d-next:hover strong { color: var(--accent-strong); }
+.d-next small { color: var(--dim); display: block; margin-bottom: 6px; }
+.d-next strong { font-size: clamp(20px, 2.2vw, 28px); font-weight: 600; letter-spacing: -.04em; }
+.d-next i { font-style: normal; font-size: 28px; color: var(--accent); }
+html.js .detail .d-up { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .8s var(--ease), transform .9s var(--ease); transition-delay: calc(.35s + var(--d, 0s)); }
+html.js .detail.open .d-up { opacity: 1; transform: none; }
+@media (max-width: 760px) {
+  .d-sec { grid-template-columns: 1fr; }
+  .issue { grid-template-columns: 1fr; }
+  .d-stats { grid-template-columns: 1fr; gap: 28px; }
+  .detail-panel { border-radius: 18px 18px 0 0; inset: 10px 0 0; }
+}
+
+/* ───────── 커서 링 (마우스 쓰는 기기만) ───────── */
+.cursor { position: fixed; left: 0; top: 0; z-index: 60; width: 36px; height: 36px; margin: -18px 0 0 -18px; border: 1px solid rgba(157, 180, 255, .55); border-radius: 50%; pointer-events: none; opacity: 0; transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), opacity .3s, background .35s, border-color .35s; }
+.cursor.on { opacity: 1; }
+.cursor.big { width: 72px; height: 72px; margin: -36px 0 0 -36px; background: rgba(157, 180, 255, .08); border-color: rgba(157, 180, 255, .9); }
+@media (pointer: coarse) { .cursor { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .rv, html.js .lines .ln > span, html.js .wordmark .ch, html.js .detail .d-up { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+  .detail-panel { transition-duration: .01s; }
+  .cursor { display: none; }
+}
+</style>
+</head>
+<body>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="cursor" aria-hidden="true"></div>
+
+<header class="topbar off" id="topbar">
+  <a class="logo" href="#top" aria-label="맨 위로">
+    <svg viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7c2.5 0 2.5-5 5-5s2.5 10 5 10 2.5-7 5-7 2.5 2 5 2" fill="none" stroke="#9DB4FF" stroke-width="1.6" stroke-linecap="round"/></svg>
+    DAEGEUN
+  </a>
+  <nav class="nav mono" aria-label="주 메뉴">
+    <a href="#about" data-nav="about">About</a>
+    <a href="#timeline" data-nav="timeline" class="keep">Timeline</a>
+    <a href="#contact" data-nav="contact" class="keep">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- ① 첫 화면 + ② 고정 구간 -->
+  <section class="hero" id="top" aria-label="첫 화면">
+    <div class="hero-stage">
+      <div class="hero-meta mono hero-fade"><span>신대근 — Product Owner</span><span>Portfolio · 2026</span></div>
+      <p class="hint mono hero-fade" aria-hidden="true">move to gather&nbsp;&nbsp;·&nbsp;&nbsp;scroll ↓</p>
+
+      <div class="voices" aria-hidden="true">
+        <span class="voice">“검증 항목이 100개가 넘어요”</span>
+        <span class="voice">“당장 써볼 수 있으면 좋겠어요”</span>
+        <span class="voice">“조회가 너무 느려요”</span>
+        <span class="voice">“가족이랑 더 자주 이야기하고 싶어요”</span>
+        <span class="voice">“부서마다 문서를 따로 채워요”</span>
+        <span class="voice">“화면으로 보면 바로 알 텐데요”</span>
+        <span class="voice">“보안 점검에 손이 너무 많이 가요”</span>
+        <span class="voice">“뭘 공유해야 할지 모르겠어요”</span>
+      </div>
+
+      <p class="says" aria-label="흩어진 요구를, 하나로 모아, 고객이 원하는 제품으로."><span>흩어진 요구를,</span><span>하나로 모아,</span><span>고객이 원하는 제품으로.</span></p>
+      <p class="says-cap">고객 한 명 한 명의 목소리를 듣고, 그 안의 진짜 필요를<br>하나로 모아 고객이 정말 원하던 제품을 만듭니다.</p>
+
+      <div class="hero-bottom">
+        <h1 class="wordmark" aria-label="DAEGEUN, 신대근"><span class="ch">D</span><span class="ch">A</span><span class="ch">E</span><span class="ch">G</span><span class="ch">E</span><span class="ch">U</span><span class="ch">N</span></h1>
+        <div class="hero-sub hero-fade">
+          <div>
+            <p class="en">many voices, one product.</p>
+            <p class="ko">흩어진 고객의 요구를 모아, 정말 원하는 제품을 만드는 PO 신대근</p>
+          </div>
+          <div class="hud mono" aria-hidden="true">
+            <span>Gathering</span>
+            <span class="meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="hud-val"><span class="hud-k">Voices</span> <b>0</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 소개 -->
+  <section class="section" id="about" aria-labelledby="about-t">
+    <div class="sec-head">
+      <p class="sec-k mono rv">01 — About</p>
+      <h2 class="sr-only" id="about-t">소개</h2>
+    </div>
+    <p class="about-lead lines">
+      <span class="ln"><span>고객의 목소리를 듣고,</span></span>
+      <span class="ln"><span style="--d:.1s"><b>AI를 어디에 어떻게</b></span></span>
+      <span class="ln"><span style="--d:.2s">써야 할지 아는 PO입니다.</span></span>
+    </p>
+    <div class="about-grid">
+      <p class="about-body rv">
+        AI 보안 기업 <strong>QueryPie</strong>에서 8개월간 Product Manager로 일하며 B2B 고객사의 AI 자동화 프로젝트 3건에 참여했습니다.
+        <strong>고객사 대응, 요구사항 분석, QA와 리스크 관리</strong>를 맡아, 고객사와 개발팀 사이에서 무엇을 만들어야 하는지 정리했습니다.
+        <br><br>
+        낯선 B2B 도메인도 빠르게 익혀 요구사항으로 바꿉니다. 자연어처리 연구실에서 AI의 원리를 공부한 덕분에 개발자와 같은 언어로 이야기할 수 있고,
+        <strong>데이터를 직접 분석해</strong> 판단의 근거를 찾습니다.
+      </p>
+      <dl class="facts rv" style="--d:.12s">
+        <div><dt class="mono">Now</dt><dd>가족 일상 공유 앱 <b>On Off</b> 창업<small>iOS·Android 심사 중 · 2026.11 출시 예정</small></dd></div>
+        <div><dt class="mono">Before</dt><dd>QueryPie · Product Manager<small>2025.07 – 2026.02</small></dd></div>
+        <div><dt class="mono">Study</dt><dd>건국대학교 경영학과 · 산업공학과<small>2027.08 졸업 예정 · 잔여 1학점</small></dd></div>
+        <div><dt class="mono">Contact</dt><dd><a href="mailto:tnsehf54@gmail.com">tnsehf54@gmail.com</a></dd></div>
+      </dl>
+    </div>
+
+    <div class="listen">
+      <p class="listen-k mono rv"><span>How I work</span><span>제가 일하는 방식</span></p>
+      <ol class="listen-list">
+        <li class="rv">
+          <span class="listen-no mono">01</span>
+          <svg class="listen-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 20 4, 30 36, 50 20 S 80 6, 100 20 S 130 34, 150 20 S 180 8, 200 20 S 230 32, 250 20 S 280 10, 300 20"/></svg>
+          <h3>B2B 고객사<br>대응 경험이 있습니다</h3>
+          <p>일본 급여 기업, 일본 자동차 기업, 한국 항공사까지 세 B2B 고객사의 요구사항을 직접 받아 정리했습니다. 삿포로 2주 출장에서는 고객사 PM·개발자·급여 담당자 6명과 검증 항목과 기준을 함께 세웠습니다.</p>
+        </li>
+        <li class="rv" style="--d:.08s">
+          <span class="listen-no mono">02</span>
+          <svg class="listen-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 L 60 20 L 70 6 L 80 34 L 90 20 L 150 20 L 160 6 L 170 34 L 180 20 L 240 20 L 250 6 L 260 34 L 270 20 L 300 20"/></svg>
+          <h3>문서가 아니라<br>화면으로 맞춥니다</h3>
+          <p>엑셀·PPT 기획서 대신 AI 도구로 실제처럼 움직이는 화면 시안을 만들어, 개발자와 실물을 보며 화면 흐름과 버튼 동작을 맞췄습니다.</p>
+        </li>
+        <li class="rv" style="--d:.16s">
+          <span class="listen-no mono">03</span>
+          <svg class="listen-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 L 40 30 L 80 31 L 120 24 L 160 26 L 200 16 L 240 18 L 300 6"/></svg>
+          <h3>데이터로<br>근거를 찾습니다</h3>
+          <p>SQL로 급여 데이터를 직접 조회해 요구사항을 검증했습니다. 졸업논문에서는 서울 어린이보호구역을 다기준 평가해 야간 속도제한을 완화해도 될 10곳을 골랐습니다.</p>
+        </li>
+        <li class="rv" style="--d:.24s">
+          <span class="listen-no mono">04</span>
+          <svg class="listen-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 50 20, 60 8, 100 8 S 150 32, 200 32 S 260 20, 300 20"/></svg>
+          <h3>제가 아니라<br>고객이 원하는 것</h3>
+          <p>완성된 AI agent를 한 번에 보여주려다, 고객이 원한 것은 불완전해도 당장 작동하는 결과물이라는 것을 배웠습니다. On Off에서도 제가 넣고 싶던 기능을 덜어냈습니다.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ④ 연대기: 건국대 입학부터 지금까지 -->
+  <section class="section" id="timeline" aria-labelledby="tl-t">
+    <div class="sec-head">
+      <p class="sec-k mono rv">02 — Timeline</p>
+      <h2 class="sec-title lines" id="tl-t"><span class="ln"><span>Timeline</span></span></h2>
+      <p class="sec-sub rv">2020년 건국대학교 입학부터 지금까지, 지나온 길을 시간 순서대로 정리했습니다.</p>
+    </div>
+
+    <div class="years">
+      <!-- 2020 -->
+      <div class="yb">
+        <p class="yr">2020<small><span class="age mono">만 20세</span>시작</small></p>
+        <ol class="evs">
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2020.02</span><span class="ev-kind">Education</span></p>
+            <h3>건국대학교 입학</h3>
+            <p class="ev-role">경영학과 · 산업공학과</p>
+            <p class="ev-desc">경영학과 산업공학을 함께 공부하며 비즈니스와 데이터를 배우기 시작했습니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2021–2022 -->
+      <div class="yb">
+        <p class="yr">2021<small><span class="age mono">만 21–22세</span>군 복무</small></p>
+        <ol class="evs">
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2021 — 2022</span><span class="ev-kind">Military</span></p>
+            <h3>군 복무</h3>
+            <p class="ev-desc">병역 의무를 마쳤습니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2023 -->
+      <div class="yb">
+        <p class="yr">2023<small><span class="age mono">만 23세</span>첫 창업</small></p>
+        <ol class="evs">
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2023.02 — 2023.10</span><span class="ev-kind">Startup</span></p>
+            <h3>창업 연합 동아리 스쿼드</h3>
+            <p class="ev-role">팀 CEO</p>
+            <p class="ev-desc">팀 CEO로 사업 기획과 마케팅을 맡았습니다. 마케터·개발자·디자이너와 협업하며 각 역할을 이해하고, 팔로워의 마음을 아는 리더로서 협업 스킬을 키웠습니다.</p>
+          </li>
+          <li class="ev rv has-media">
+            <p class="ev-when mono"><span>2023</span><span class="ev-kind">Startup</span><span class="ev-has">Photos · Film</span></p>
+            <h3>DTC Market — 온라인 패션 플랫폼</h3>
+            <p class="ev-role">공동 창업 · 운영 · 헤어디자이너, 모델과 함께</p>
+            <p class="ev-desc">헤어디자이너, 모델과 함께 온라인 패션 플랫폼 DTC(Down Town Crew)를 창업해 운영했습니다. 운영을 제대로 해내지 못해 실제 판매까지는 이어가지 못했습니다.</p>
+            <div class="ev-media"><div class="ev-media-in">
+              <a class="mtile" href="assets/dtc/dtc-1.jpg" target="_blank" rel="noopener"><img src="assets/dtc/dtc-1.jpg" alt="DTC Market 메인 화면" loading="lazy" width="900" height="1503"></a>
+              <a class="mtile" href="assets/dtc/dtc-2.jpg" target="_blank" rel="noopener"><img src="assets/dtc/dtc-2.jpg" alt="DTC Market 화보" loading="lazy" width="900" height="1168"></a>
+              <div class="mtile"><video src="assets/dtc/dtc-film.mp4" poster="assets/dtc/dtc-film-poster.jpg" muted loop playsinline preload="none" aria-label="DTC 브랜드 필름"></video></div>
+            </div></div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2024 -->
+      <div class="yb">
+        <p class="yr">2024<small><span class="age mono">만 24세</span>AI와 데이터</small></p>
+        <ol class="evs">
+          <li class="ev rv has-media">
+            <p class="ev-when mono"><span>2024.01 — 2024.07</span><span class="ev-kind">Education · Data</span><span class="ev-has">Slides · PDF</span></p>
+            <h3>SK네트웍스 Family 엔코아 AI 캠퍼스</h3>
+            <p class="ev-role">6개월 · 수료</p>
+            <p class="ev-desc">머신러닝부터 자연어처리까지 실습 중심 과정을 수료했습니다. 최종 프로젝트로 Football Agora를 만들었습니다.</p>
+            <ol class="idx idx-sub">
+            <li><div class="idx-row" data-vis="football">
+              <span class="n mono">D</span>
+              <span class="t">축구 선수 데이터 예측 모델<small>FMInside 능력치와 Transfermarkt 시장가치로 능력치·잠재력·시장가치 예측, 포지션별 유사 선수 조회(KNN) 모델을 만들었습니다.</small></span>
+              <span class="m mono">Data</span>
+            </div></li>
+            <li><div class="idx-row">
+              <span class="n mono">F</span>
+              <span class="t">Football Agora — 풋살 팀 매칭 · 커뮤니티 플랫폼<small>최종 프로젝트 · Team Adios 8명 · 2024.05 — 2024.07. 누구나 자신만의 풋살 이야기를 기록하고 나눌 수 있는 플랫폼입니다. 경기 영상을 분석해 팀 히트맵·점유율·패스맵 리포트를 만드는 이미지 분석 모델과, 풋살을 처음 접하는 사람을 위한 가이드 챗봇 '풋풋이'를 담았습니다. 저는 LLM팀에서 챗봇 기획, 데이터 전처리, RAG 파이프라인 구축을 맡았습니다.</small></span>
+              <span class="m mono">AI · 48일</span>
+            </div></li>
+            </ol>
+            <div class="ev-media"><div class="ev-media-in">
+              <a class="mtile mslide" href="assets/files/fa-analysis.jpg" target="_blank" rel="noopener"><img src="assets/files/fa-analysis.jpg" alt="경기 영상 분석 리포트 슬라이드" loading="lazy" width="800" height="450"></a>
+              <a class="mtile mslide" href="assets/files/fa-chatbot.jpg" target="_blank" rel="noopener"><img src="assets/files/fa-chatbot.jpg" alt="풋살 가이드 챗봇 풋풋이 슬라이드" loading="lazy" width="800" height="450"></a>
+              <a class="mtile mdoc" href="assets/files/football-agora.pdf" download="FootballAgora_최종발표_신대근.pdf">
+                <img src="assets/files/fa-cover.jpg" alt="Football Agora 발표 자료 표지" loading="lazy" width="800" height="450">
+                <span class="mdl mono">발표 자료 PDF ↓ <small>68쪽 · 7MB</small></span>
+              </a>
+            </div></div>
+          </li>
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2024.07 — 2025.09</span><span class="ev-kind">Research</span></p>
+            <h3>건국대학교 자연어처리 연구실</h3>
+            <p class="ev-role">컴퓨터공학부 · 학부연구생 · 14개월</p>
+            <p class="ev-desc">머신러닝부터 GPT 계열 언어 모델까지 AI 이론과 논문을 공부하며, AI가 작동하는 원리를 익혔습니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2025 -->
+      <div class="yb">
+        <p class="yr">2025<small><span class="age mono">만 25세</span>B2B 현장으로</small></p>
+        <ol class="evs">
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2025.07 — 2026.02</span><span class="ev-kind">Work</span></p>
+            <h3>QueryPie</h3>
+            <p class="ev-role">Product Manager · 계약직 · AI 보안 기업</p>
+            <p class="ev-desc">B2B 고객사의 AI 자동화 프로젝트 3건에 PM으로 참여했습니다. 고객사 대응과 요구사항 분석을 맡고, 시니어 PM과 함께 애자일 스프린트로 일정·QA·리스크를 관리했습니다.</p>
+            <dl class="nums">
+              <div><dt><span class="count" data-to="3">0</span><small>곳</small></dt><dd>B2B 고객사 대응</dd></div>
+            </dl>
+            <ol class="idx idx-sub">
+            <li><a class="idx-row" href="#work/payroll" data-cursor data-vis="payroll">
+              <span class="n mono">01</span>
+              <span class="t">급여 검증 프로세스 AI 자동화<small>일본 B2B 급여 지급 기업 · 검증 항목 체계화, SQL로 급여 데이터를 조회해 요구사항 검증</small></span>
+              <span class="m mono">PM · 6개월</span><span class="go" aria-hidden="true">→</span>
+            </a></li>
+            <li><a class="idx-row" href="#work/spec" data-cursor data-vis="spec">
+              <span class="n mono">02</span>
+              <span class="t">스펙 문서 생성 AI 자동화<small>일본 대형 자동차 기업 · 실제 문서와 작업 과정을 분석해 요구사항 구체화</small></span>
+              <span class="m mono">PM · 1개월</span><span class="go" aria-hidden="true">→</span>
+            </a></li>
+            <li><a class="idx-row" href="#work/security" data-cursor data-vis="security">
+              <span class="n mono">03</span>
+              <span class="t">DB 보안 리포트 생성 AI 자동화<small>한국 대형 항공사 · 경쟁사 비교 분석으로 제안 설득</small></span>
+              <span class="m mono">PM · 1개월</span><span class="go" aria-hidden="true">→</span>
+            </a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2026 -->
+      <div class="yb">
+        <p class="yr">2026<small><span class="age mono">만 26세</span>분석하고, 만들다</small></p>
+        <ol class="evs">
+          <li class="ev rv has-media">
+            <p class="ev-when mono"><span>2026.05</span><span class="ev-kind">Data · Project</span><span class="ev-has">PDF</span></p>
+            <h3>판결문 기반 한국 음주운전 사건의 양형 불균형 분석</h3>
+            <p class="ev-role">Team CleanRoad · 6명</p>
+            <p class="ev-desc">최근 5년, 12개 지역의 음주운전 판결문 <b>6,337건</b>을 수집해 형량 예측 모델(Random Forest, SVM, 선형회귀)을 비교했습니다. 최종 SVM 모델은 실제 형량을 6개월 오차 이내로 <b>77%</b> 맞혔고, 같은 조건이라도 경기·인천이 서울보다 약 <b>5개월</b> 높게 선고되는 지역별 양형 불균형을 확인했습니다.</p>
+            <div class="ev-media"><div class="ev-media-in">
+              <a class="mtile mdoc" href="assets/files/sentencing-analysis.pdf" download="양형불균형_데이터분석_신대근.pdf">
+                <img src="assets/files/sentencing-cover.jpg" alt="발표 자료 표지" loading="lazy" width="800" height="450">
+                <span class="mdl mono">발표 자료 PDF ↓ <small>32쪽 · 5.7MB</small></span>
+              </a>
+            </div></div>
+          </li>
+          <li class="ev rv has-media">
+            <p class="ev-when mono"><span>2026.06</span><span class="ev-kind">Data · Thesis</span><span class="ev-has">PDF</span></p>
+            <h3>졸업논문 — TOPSIS를 활용한 어린이 보호구역 야간 가변형 속도제한 도입 우선순위 도출</h3>
+            <p class="ev-role">건국대학교 산업공학과 · 공동 저자 5명</p>
+            <p class="ev-desc">서울시 어린이 보호구역 <b>1,391개소</b>의 새벽 시간대(00~06시) 위험도를 10개 변수와 AHP 가중치로 TOPSIS 평가했습니다. 전체의 약 72%가 고위험 구간에 몰린 구조를 확인하고, GMM 클러스터링으로 완화 후보군 <b>391개소</b>를 골라 재-TOPSIS로 우선순위를 매겨 단계적 도입 로드맵을 제시했습니다.</p>
+            <div class="ev-media"><div class="ev-media-in">
+              <a class="mtile mdoc mthesis" href="assets/files/thesis.pdf" download="졸업논문_TOPSIS_어린이보호구역_신대근.pdf">
+                <img src="assets/files/thesis-cover.png" alt="졸업논문 첫 페이지" loading="lazy" width="724" height="1024">
+                <span class="mdl mono">논문 PDF ↓ <small>14쪽 · 1.8MB</small></span>
+              </a>
+            </div></div>
+          </li>
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2026.07 — Now</span><span class="ev-kind">Startup</span></p>
+            <h3>On Off 창업</h3>
+            <p class="ev-role">Founder · PO · 디자이너 2 · 개발자 1</p>
+            <p class="ev-desc">따로 사는 부모와 자식을 잇는 가족 일상 공유 앱입니다. 테스터 15명의 피드백을 듣고 기능을 세 가지로 덜어냈고, iOS·Android 앱 심사 중입니다(2026.11 출시 예정).</p>
+            <ol class="idx idx-sub">
+            <li><a class="idx-row" href="#work/onoff" data-cursor data-vis="onoff">
+              <span class="n mono">→</span>
+              <span class="t">On Off 이야기 자세히 보기<small>1차 버전의 실패와, 사용자의 목소리로 다시 만든 과정</small></span>
+              <span class="m mono">Startup</span><span class="go" aria-hidden="true">→</span>
+            </a></li>
+            </ol>
+          </li>
+          <li class="ev rv has-media">
+            <p class="ev-when mono"><span>2026.09 — Now</span><span class="ev-kind">Startup</span><span class="ev-has">IR Deck · PDF</span></p>
+            <h3>KU 창업클럽 6기</h3>
+            <p class="ev-desc">On Off 사업계획서를 쓰고 IR 피칭으로 투자 유치를 진행하고 있습니다.</p>
+            <div class="ev-media"><div class="ev-media-in">
+              <a class="mtile mdoc" href="assets/files/onoff-ir.pdf" download="OnOff_IR_Deck_신대근.pdf">
+                <img src="assets/files/onoff-ir-cover.jpg" alt="On Off IR Deck 표지" loading="lazy" width="800" height="450">
+                <span class="mdl mono">IR Deck PDF ↓ <small>19쪽 · 1MB</small></span>
+              </a>
+            </div></div>
+          </li>
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2026.09 — Now</span><span class="ev-kind">Mentoring</span></p>
+            <h3>KU 창업 학회 Motivation</h3>
+            <p class="ev-role">멘토</p>
+            <p class="ev-desc">멘티 팀이 기획한 프로젝트에 피드백하고, AI 활용 방법을 나눕니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2027 -->
+      <div class="yb">
+        <p class="yr">2027<small><span class="age mono">만 27세</span>졸업</small></p>
+        <ol class="evs">
+          <li class="ev rv">
+            <p class="ev-when mono"><span>2027.08</span><span class="ev-kind">Education</span></p>
+            <h3>건국대학교 졸업 예정</h3>
+            <p class="ev-desc">잔여 1학점으로, 근무와 병행해 이수할 수 있습니다.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tools">
+      <div class="rv"><h3 class="mono">Product</h3><ul><li>고객사 대응</li><li>요구사항 분석</li><li>QA</li><li>리스크 관리</li><li>일정 관리</li></ul></div>
+      <div class="rv" style="--d:.06s"><h3 class="mono">Data</h3><ul><li>SQL</li><li>데이터 분석</li><li>ML · DL</li><li>TOPSIS</li></ul></div>
+      <div class="rv" style="--d:.12s"><h3 class="mono">AI tools</h3><ul><li>Claude Code</li><li>Codex</li><li>MCP server</li><li>Skills</li></ul></div>
+      <div class="rv" style="--d:.18s"><h3 class="mono">Collaboration</h3><ul><li>Jira</li><li>Confluence</li><li>Slack</li><li>GitHub</li><li>Agile sprint</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ⑦ 연락 -->
+  <section class="contact" id="contact" aria-labelledby="contact-t">
+    <p class="contact-k mono rv">03 — Contact</p>
+    <h2 class="contact-title lines" id="contact-t"><span class="ln"><span>Let's talk.</span></span></h2>
+    <p class="contact-ko rv">고객의 목소리를 모아 고객이 원하는 제품을 만드는 일, 함께하고 싶습니다.</p>
+    <button class="mail rv" type="button" data-email="tnsehf54@gmail.com" data-cursor aria-label="이메일 주소 복사하기">tnsehf54@gmail.com <span class="mail-tip" aria-live="polite">click to copy</span></button>
+    <div class="contact-actions rv">
+      <a class="btn primary" href="mailto:tnsehf54@gmail.com" data-cursor>메일 보내기 ↗</a>
+      <a class="btn" href="assets/resume.pdf" download="신대근_이력서.pdf" data-cursor>이력서 PDF ↓</a>
+    </div>
+  </section>
+</main>
+
+<footer class="mono">
+  <span>© 2026 신대근 Daegeun Shin</span>
+  <span>Designed &amp; built by Daegeun</span>
+</footer>
+
+<!-- 목록에 마우스를 올리면 따라다니는 미리보기 -->
+<div class="peek" aria-hidden="true"><div class="peek-in"><canvas></canvas></div></div>
+
+<!-- 프로젝트 상세 -->
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="d-title" aria-hidden="true">
+  <div class="detail-dim" data-close></div>
+  <div class="detail-panel" data-lenis-prevent tabindex="-1">
+    <div class="d-bar mono"><span class="d-count"></span><button class="d-close" type="button" data-close>닫기 ✕</button></div>
+    <div class="d-inner"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const cl = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const sm = t => t * t * (3 - 2 * t);
+const mix = (a, b, t) => a + (b - a) * t;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = matchMedia('(pointer: fine)').matches;
+
+/* ───────── 부드러운 스크롤 ───────── */
+let lenis = null;
+if (!reduce && window.Lenis) {
+  lenis = new Lenis({ lerp: .085, wheelMultiplier: .9, touchMultiplier: 1.4 });
+}
+const scrollToEl = (el, instant) => {
+  if (!el) return;
+  const y = el === document.body || el.id === 'top' ? 0 : el.getBoundingClientRect().top + scrollY;
+  if (lenis) lenis.scrollTo(y, { immediate: !!instant, duration: 1.6 });
+  else window.scrollTo({ top: y, behavior: instant || reduce ? 'auto' : 'smooth' });
+};
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (!id || id.startsWith('work/')) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  e.preventDefault();
+  if (detailOpen) closeDetail();
+  scrollToEl(el);
+});
+
+/* ───────── 점 배경 (흩어진 요구 → 하나로) ───────── */
+const cv = $('#field'), g = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1, ps = [];
+const field = { k: 0, kT: 0, alpha: 1, alphaT: 1, cy: .6, cyT: .6, amp: 1, ampT: 1, voices: 1, voicesT: 1 };
+const mouse = { x: -9999, y: -9999, on: 0, onT: 0, last: 0 }; 
+const TAU = Math.PI * 2;
+const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+// 둥근 점 그림을 한 번 만들어 두고 찍어 냄
+function makeDot(rgb) {
+  const c = document.createElement('canvas'); c.width = c.height = 48;
+  const x = c.getContext('2d'), gr = x.createRadialGradient(24, 24, 0, 24, 24, 24);
+  gr.addColorStop(0, `rgba(${rgb},1)`); gr.addColorStop(.4, `rgba(${rgb},1)`);
+  gr.addColorStop(.55, `rgba(${rgb},.32)`); gr.addColorStop(1, `rgba(${rgb},0)`);
+  x.fillStyle = gr; x.fillRect(0, 0, 48, 48); return c;
+}
+const DOT = makeDot('157,180,255'), DOT_W = makeDot('232,236,245');
+// 말풍선이 붙어 다니는 점의 처음 자리 (u, v)
+const VOICE_AT = [[.07, .2], [.3, .11], [.55, .22], [.79, .13], [.24, .38], [.47, .43], [.7, .35], [.86, .5]];
+const VOICE_AT_SM = [[.06, .17], [.38, .29], [.08, .42], [.34, .55]]; // 휴대폰: 4개만
+const voiceEls = $$('.voice');
+
+function sizeField() {
+  DPR = Math.min(2, devicePixelRatio || 1);
+  W = innerWidth; H = innerHeight;
+  cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+  g.setTransform(DPR, 0, 0, DPR, 0, 0);
+  const n = Math.round(cl(W * H / 820, 700, 2400));
+  const small = W < 640 ? .82 : 1;
+  if (Math.abs(n - ps.length) > 200 || !ps.length) {
+    ps = Array.from({ length: n }, (_, i) => {
+      const u = Math.random(), v = Math.random(), s = Math.random(), hi = Math.random() < .07;
+      return {
+        u, v, s,
+        wu: (i + Math.random()) / n,          // 하나로 모였을 때의 가로 자리
+        strand: i % 3,                         // 세 가닥으로 꼬인 선
+        band: gauss() * 7,                     // 선의 두께
+        x: u * W, y: v * H,
+        hi,                                    // 밝은 점
+        core: (hi ? 5.2 : 2.4 + s * s * 3.2) * small   // 점 지름(px)
+      };
+    });
+    // 말풍선 점: 정해 둔 자리에서 시작, 크고 하얗게
+    const at = W < 640 ? VOICE_AT_SM : VOICE_AT;
+    at.forEach(([u, v], j) => {
+      const p = ps[Math.floor((j + .5) / at.length * ps.length)];
+      if (!p) return;
+      Object.assign(p, { u, v, x: u * W, y: v * H, hi: true, core: 7 * small, voice: voiceEls[j], s: .15 + j * .05 });
+    });
+  }
+}
+
+function waveY(u, T, strand) {
+  const ph = strand * .55;
+  const env = .22 + .78 * Math.sin(Math.PI * u);
+  return env * (.68 * Math.sin(u * TAU * 1.5 - T * .9 + ph) + .32 * Math.sin(u * TAU * 4.2 - T * 1.7 + ph * 1.8));
+}
+
+let T = 0;
+function drawField(dt) {
+  if (!reduce) T += dt;
+  const k = field.k, A = H * .13 * field.amp, cy = H * field.cy;
+  const mOn = mouse.on, R = Math.min(W, H) * .36, R2 = R * R;
+  g.clearRect(0, 0, W, H);
+  const drift = reduce ? 0 : .00032;
+  for (let i = 0; i < ps.length; i++) {
+    const p = ps[i];
+    // 소음 상태: 천천히 떠도는 점
+    const dr = p.voice ? drift * .25 : drift;
+    p.u += Math.sin(p.v * 6 + T * .25 + p.s * 10) * dr;
+    p.v += Math.cos(p.u * 5 + T * .2 + p.s * 7) * dr;
+    if (p.u < 0) p.u += 1; else if (p.u > 1) p.u -= 1;
+    if (p.v < 0) p.v += 1; else if (p.v > 1) p.v -= 1;
+    const nx = p.u * W, ny = p.v * H;
+    // 신호 상태: 파형 위 자리
+    const tx = p.wu * W, ty = cy + A * waveY(p.wu, T, p.strand) + p.band;
+    const kk = sm(cl(k * 1.4 - p.s * .4));
+    let gx = nx + (tx - nx) * kk, gy = ny + (ty - ny) * kk;
+    // 커서: 주변 점들이 귀 기울이듯 둥글게 모여듦
+    if (mOn > .01) {
+      const dx = gx - mouse.x, dy = gy - mouse.y, d2 = dx * dx + dy * dy;
+      if (d2 < R2 && d2 > 1) {
+        const d = Math.sqrt(d2), f = Math.min(1, Math.pow(1 - d / R, .6) * 1.25) * mOn * (1 - kk * .5);
+        const ang = Math.atan2(dy, dx);
+        const ring = R * .16 + Math.sin(ang * 5 + T * 3) * 6 + p.band * 1.6 + p.s * R * .09;
+        const nd = d + (ring - d) * f;
+        gx = mouse.x + dx / d * nd; gy = mouse.y + dy / d * nd;
+      }
+    }
+    p.x += (gx - p.x) * .13; p.y += (gy - p.y) * .13;
+    g.globalAlpha = Math.min(1, (p.hi ? .95 : .42 + .45 * p.s) * (.8 + .2 * kk) * field.alpha);
+    const D = p.core * 2;
+    g.drawImage(p.hi ? DOT_W : DOT, p.x - D / 2, p.y - D / 2, D, D);
+    // 말풍선은 자기 점을 따라가다가 하나로 모이면 사라짐
+    if (p.voice) {
+      const o = field.voices * (1 - cl(kk / .45));
+      p.voice.style.opacity = o.toFixed(3);
+      if (o > .001) {
+        const bw = p.voice._w || (p.voice._w = p.voice.offsetWidth);
+        const bx = Math.max(8, Math.min(W - bw - 8, p.x + 9));
+        p.voice.style.transform = `translate3d(${bx.toFixed(1)}px, ${(p.y - 38).toFixed(1)}px, 0)`;
+      }
+    }
+  }
+  // 커서에서 소리 물결이 퍼져 나감
+  if (mOn > .01 && !reduce) {
+    g.strokeStyle = '#9DB4FF'; g.lineWidth = 1;
+    for (let j = 0; j < 3; j++) {
+      const ph = (T * .55 + j / 3) % 1;
+      g.globalAlpha = (1 - ph) * .22 * mOn * (1 - k * .7) * field.alpha;
+      g.beginPath(); g.arc(mouse.x, mouse.y, R * (.18 + ph * .85), 0, TAU); g.stroke();
+    }
+  }
+  // 다 모이면 가는 선 하나가 비침
+  const lineA = Math.pow(cl((k - .82) / .18), 2) * .32 * field.alpha;
+  if (lineA > .005) {
+    g.globalAlpha = lineA; g.strokeStyle = '#C6D3FF'; g.lineWidth = 1;
+    g.beginPath();
+    for (let x = 0; x <= W; x += 4) { const y = cy + A * waveY(x / W, T, 1); x ? g.lineTo(x, y) : g.moveTo(x, y); }
+    g.stroke();
+  }
+  g.globalAlpha = 1;
+}
+
+/* ───────── 프로젝트 카드 그림 ───────── */
+const visRand = (seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647)(7);
+const flags = Array.from({ length: 60 }, () => visRand() < .14);
+const peek = $('.peek'), peekC = $('.peek canvas');
+const peekV = { c: peekC, g: peekC.getContext('2d'), type: '', on: false, hover: 0, hoverT: 0, t: 0 };
+const vis = [peekV];
+const ppos = { x: -400, y: -400, show: false, side: -1 };
+$$('.idx-row[data-vis], .ev[data-vis]').forEach(row => {
+  row.addEventListener('pointerenter', e => {
+    if (e.pointerType !== 'mouse') return;
+    if (peekV.type !== row.dataset.vis) { peekV.type = row.dataset.vis; peekV.pts = peekV.rows = null; peekV.t = 0; }
+    if (!ppos.show) { ppos.x = e.clientX + 24; ppos.y = e.clientY - 216; }
+    // 연대기 안에서는 왼쪽 연도 칸의 빈자리에 띄움 (글을 가리지 않게)
+    const evs = row.closest('.yb') && row.closest('.yb').querySelector('.evs');
+    ppos.side = evs ? evs.getBoundingClientRect().left - 300 - 40 : -1;
+    if (ppos.side < 8) ppos.side = -1;
+    ppos.show = peekV.on = true; peekV.hoverT = 1; peek.classList.add('on');
+  });
+  row.addEventListener('pointerleave', () => { ppos.show = false; peekV.hoverT = 0; peek.classList.remove('on'); setTimeout(() => { if (!ppos.show) peekV.on = false; }, 350); });
+});
+
+function drawVis(v, dt) {
+  const r = v.c.getBoundingClientRect(), d = DPR;
+  const w = r.width, h = r.height;
+  if (v.c.width !== Math.round(w * d)) { v.c.width = Math.round(w * d); v.c.height = Math.round(h * d); }
+  v.hover += (v.hoverT - v.hover) * .08;
+  if (!reduce) v.t += dt * (1 + v.hover * 1.6);
+  const G = v.g, t = v.t, hv = v.hover;
+  G.setTransform(d, 0, 0, d, 0, 0); G.clearRect(0, 0, w, h);
+  const acc = (a) => `rgba(157,180,255,${a})`, wht = (a) => `rgba(232,236,245,${a})`;
+  if (v.type === 'payroll') {
+    // 100개 넘는 검증 항목이 차례로 확인됨
+    const cols = 14, rows = 8, gx = w * .64 / cols, gy = h * .5 / rows, ox = w * .18, oy = h * .3;
+    const total = cols * rows, done = Math.floor(((t * .11) % 1.25) * total);
+    for (let i = 0; i < total; i++) {
+      const x = ox + (i % cols) * gx + gx / 2, y = oy + Math.floor(i / cols) * gy + gy / 2;
+      const ok = i < done;
+      G.fillStyle = ok ? acc(.95) : wht(.13);
+      const s = ok ? 3.2 + hv : 2.2;
+      G.beginPath(); G.arc(x, y, s, 0, TAU); G.fill();
+      if (i === done) { G.strokeStyle = acc(.6); G.beginPath(); G.arc(x, y, 8 + Math.sin(t * 8) * 2, 0, TAU); G.stroke(); }
+    }
+    G.fillStyle = wht(.45); G.font = `500 11px 'JetBrains Mono', monospace`;
+    G.fillText(`VERIFIED ${String(Math.min(done, total)).padStart(3, '0')} / ${total}`, ox, h * .88);
+  } else if (v.type === 'spec') {
+    // 여러 부서의 조각이 문서 하나로 모임
+    const dw = w * .26, dh = h * .56, dx = w * .5 - dw / 2, dy = h * .22;
+    G.strokeStyle = wht(.25); G.lineWidth = 1; G.strokeRect(dx, dy, dw, dh);
+    const lines = 9, fill = ((t * .12) % 1.2);
+    for (let i = 0; i < lines; i++) {
+      const y = dy + 18 + i * (dh - 30) / lines, p = cl(fill * lines * 1.1 - i);
+      G.fillStyle = wht(.08); G.fillRect(dx + 14, y, dw - 28, 3);
+      G.fillStyle = acc(.9); G.fillRect(dx + 14, y, (dw - 28) * sm(p) * (i % 3 === 2 ? .6 : 1), 3);
+    }
+    for (let s = 0; s < 4; s++) {
+      const sx = s < 2 ? w * .1 : w * .9, sy = h * (s % 2 ? .72 : .3);
+      G.fillStyle = wht(.5); G.beginPath(); G.arc(sx, sy, 3, 0, TAU); G.fill();
+      for (let j = 0; j < 5; j++) {
+        const q = ((t * .35 + j / 5 + s * .13) % 1), e = sm(q);
+        const px = mix(sx, w * .5, e), py = mix(sy, dy + dh * .5, e) + Math.sin(q * Math.PI) * (s % 2 ? 20 : -20);
+        G.fillStyle = acc(.8 * Math.sin(q * Math.PI)); G.fillRect(px, py, 2, 2);
+      }
+    }
+  } else if (v.type === 'security') {
+    // DB 표를 훑으며 위험한 칸을 찾아 리포트로
+    const cols = 12, rows = 5, cw = w * .62 / cols, ch = h * .42 / rows, ox = w * .1, oy = h * .28;
+    const scan = ((t * .16) % 1.15) * cols;
+    for (let i = 0; i < cols * rows; i++) {
+      const c = i % cols, r = Math.floor(i / cols), x = ox + c * cw, y = oy + r * ch;
+      const seen = c < scan, fl = flags[i] && seen;
+      G.fillStyle = fl ? acc(.85) : wht(seen ? .14 : .06);
+      G.fillRect(x + 2, y + 2, cw - 4, ch - 4);
+    }
+    const sxp = ox + Math.min(scan, cols) * cw;
+    G.fillStyle = acc(.9); G.fillRect(sxp, oy - 8, 1.5, rows * ch + 16);
+    const rx = w * .78, found = flags.filter((f, i) => f && (i % cols) < scan).length;
+    G.strokeStyle = wht(.25); G.strokeRect(rx, oy, w * .13, rows * ch);
+    for (let i = 0; i < found; i++) { G.fillStyle = acc(.8); G.fillRect(rx + 8, oy + 10 + i * 10, w * .13 - 16, 3); }
+    G.fillStyle = wht(.45); G.font = `500 11px 'JetBrains Mono', monospace`; G.fillText('REPORT', rx, oy + rows * ch + 20);
+  } else if (v.type === 'topsis') {
+    // 여러 구역을 기준 여러 개로 평가해, 이상점에 가까운 10곳을 고름
+    if (!v.pts) v.pts = Array.from({ length: 46 }, () => ({ x: visRand(), y: visRand() })).map(p => ({ ...p, d: Math.hypot(1 - p.x, 1 - p.y) })).sort((a, b) => a.d - b.d);
+    const ox = w * .1, oy = h * .24, pw = w * .78, ph = h * .58;
+    G.strokeStyle = wht(.14); G.lineWidth = 1;
+    G.beginPath(); G.moveTo(ox, oy); G.lineTo(ox, oy + ph); G.lineTo(ox + pw, oy + ph); G.stroke();
+    const ix = ox + pw, iy = oy;
+    const shown = Math.floor(((t * .18) % 1.3) * 14);
+    v.pts.forEach((p, i) => {
+      const x = ox + p.x * pw, y = oy + (1 - p.y) * ph, top = i < 10, on = top && i < shown;
+      if (on) { G.strokeStyle = acc(.25); G.beginPath(); G.moveTo(x, y); G.lineTo(ix, iy); G.stroke(); }
+      G.fillStyle = on ? acc(.95) : wht(.22);
+      G.beginPath(); G.arc(x, y, on ? 4 + hv : 2.6, 0, TAU); G.fill();
+    });
+    G.fillStyle = wht(.8); G.beginPath(); G.arc(ix, iy, 4, 0, TAU); G.fill();
+    G.fillStyle = wht(.45); G.font = `500 11px 'JetBrains Mono', monospace`;
+    G.fillText(`SELECTED ${String(Math.min(shown, 10)).padStart(2, '0')} / 10`, ox, h * .95);
+  } else if (v.type === 'sentencing') {
+    // 비슷한 사건끼리 형량이 얼마나 퍼져 있는지
+    if (!v.rows) v.rows = Array.from({ length: 5 }, (_, r) => Array.from({ length: 16 }, () => ({ c: .2 + r * .1, x: gauss() * (.06 + r * .03) })));
+    const ox = w * .1, pw = w * .8, rh = h * .7 / 5, oy = h * .14;
+    v.rows.forEach((row, r) => {
+      const y = oy + r * rh + rh / 2;
+      G.strokeStyle = wht(.08); G.beginPath(); G.moveTo(ox, y); G.lineTo(ox + pw, y); G.stroke();
+      const sel = Math.floor(t * .35) % 5 === r;
+      let lo = 1, hi = 0;
+      row.forEach((p, i) => {
+        const px = cl(p.c + p.x + Math.sin(t * .8 + i + r) * .004);
+        lo = Math.min(lo, px); hi = Math.max(hi, px);
+        G.fillStyle = sel ? acc(.9) : wht(.25);
+        G.beginPath(); G.arc(ox + px * pw, y, sel ? 3.4 + hv * .6 : 2.4, 0, TAU); G.fill();
+      });
+      if (sel) { G.strokeStyle = acc(.6); G.beginPath(); G.moveTo(ox + lo * pw, y - 9); G.lineTo(ox + lo * pw, y + 9); G.moveTo(ox + hi * pw, y - 9); G.lineTo(ox + hi * pw, y + 9); G.moveTo(ox + lo * pw, y); G.lineTo(ox + hi * pw, y); G.stroke(); }
+    });
+    G.fillStyle = wht(.45); G.font = `500 11px 'JetBrains Mono', monospace`; G.fillText('SENTENCE SPREAD', ox, h * .95);
+  } else if (v.type === 'football') {
+    // 한 선수와 가장 비슷한 선수 5명 (KNN)
+    if (!v.pts) v.pts = Array.from({ length: 60 }, () => ({ x: .08 + visRand() * .84, y: .1 + visRand() * .72 }));
+    const pts = v.pts, ti = Math.floor(t * .3) % pts.length, tp = pts[(ti * 7) % pts.length];
+    const near = pts.map((p, i) => ({ i, d: Math.hypot(p.x - tp.x, (p.y - tp.y) * h / w) })).sort((a, b) => a.d - b.d).slice(1, 6).map(o => o.i);
+    pts.forEach((p, i) => {
+      const nn = near.includes(i);
+      if (nn) { G.strokeStyle = acc(.4); G.beginPath(); G.moveTo(tp.x * w, tp.y * h); G.lineTo(p.x * w, p.y * h); G.stroke(); }
+      G.fillStyle = nn ? acc(.9) : wht(.2);
+      G.beginPath(); G.arc(p.x * w, p.y * h, nn ? 3.6 : 2.4, 0, TAU); G.fill();
+    });
+    G.fillStyle = wht(.95); G.beginPath(); G.arc(tp.x * w, tp.y * h, 5 + hv, 0, TAU); G.fill();
+    G.fillStyle = wht(.45); G.font = `500 11px 'JetBrains Mono', monospace`; G.fillText('K = 5 · SIMILAR PLAYERS', w * .08, h * .95);
+  } else if (v.type === 'sql') {
+    // 쿼리로 급여 데이터를 훑으며 기준에 맞는 행을 찾음
+    G.font = `500 11px 'JetBrains Mono', monospace`; G.fillStyle = acc(.85);
+    G.fillText('SELECT * FROM payroll WHERE check = ?', w * .08, h * .17);
+    const rows = 7, cols = 6, ox = w * .08, oy = h * .26, cw = w * .84 / cols, rh = h * .6 / rows;
+    const scan = (t * 1.6) % (rows + 3);
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const hit = flags[(r * cols + c + 3) % flags.length] || (r % 3 === 1 && c === 2), seen = r < scan;
+      G.fillStyle = seen && hit ? acc(.85) : wht(r < scan ? .12 : .05);
+      G.fillRect(ox + c * cw + 2, oy + r * rh + 2, cw - 4, rh - 4);
+    }
+    const sy = oy + Math.min(scan, rows) * rh;
+    G.fillStyle = acc(.7); G.fillRect(ox - 6, sy - 1, w * .84 + 12, 1.5);
+  } else if (v.type === 'onoff') {
+    // 전등이 켜지면 가족이 모여듦
+    const on = sm(cl((Math.sin(t * 1.1) + .2) * 1.6)) ;
+    const cx = w * .5, cy = h * .5, R = Math.min(w, h) * .13;
+    const grd = G.createRadialGradient(cx, cy, 0, cx, cy, R * 4.2);
+    grd.addColorStop(0, `rgba(255,214,150,${.32 * on})`); grd.addColorStop(1, 'rgba(255,214,150,0)');
+    G.fillStyle = grd; G.fillRect(0, 0, w, h);
+    G.fillStyle = `rgba(255,${Math.round(mix(120, 222, on))},${Math.round(mix(140, 170, on))},${mix(.18, .95, on)})`;
+    G.beginPath(); G.arc(cx, cy, R, 0, TAU); G.fill();
+    for (let i = 0; i < 4; i++) {
+      const a = i / 4 * TAU + t * .35, rr = mix(R * 3.2, R * 1.8, on);
+      G.fillStyle = on > .5 ? `rgba(255,222,170,${.5 + .4 * on})` : wht(.3);
+      G.beginPath(); G.arc(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr * .7, 4.5, 0, TAU); G.fill();
+    }
+    G.fillStyle = wht(.45); G.font = `500 11px 'JetBrains Mono', monospace`; G.textAlign = 'center';
+    G.fillText(on > .5 ? 'ON' : 'OFF', cx, h * .9); G.textAlign = 'start';
+  }
+}
+
+/* ───────── 스크롤에 따라 바뀌는 것들 ───────── */
+const hero = $('#top'), topbar = $('#topbar');
+const word = $('.wordmark'), fades = $$('.hero-fade'), says = $$('.says span'), saysCap = $('.says-cap');
+const hudVal = $('.hud-val b'), hudK = $('.hud-k'), bars = $$('.meter i');
+const navLinks = $$('[data-nav]');
+const secs = ['about', 'timeline', 'contact'].map(id => document.getElementById(id));
+const contact = $('#contact');
+const ybs = $$('.yb');
+let M = {}, curYb = -1;
+function measure() {
+  M = {
+    vh: innerHeight,
+    heroH: hero.offsetHeight,
+    secTops: secs.map(s => s.getBoundingClientRect().top + scrollY),
+    contactTop: contact.getBoundingClientRect().top + scrollY,
+    yrTops: ybs.map(b => b.getBoundingClientRect().top + scrollY)
+  };
+}
+
+let lastY = -1, curNav = '';
+function onScroll(y) {
+  const vh = M.vh, run = Math.max(1, M.heroH - vh), q = cl(y / run);
+  // 이름은 위로 올라가며 작아지고 흐려짐
+  const t = sm(cl(q / .5));
+  word.style.transform = `translate3d(0, ${(t * 2).toFixed(2)}vh, 0) scale(${(1 - t * .42).toFixed(4)})`;
+  word.style.opacity = (1 - t * .84).toFixed(3);
+  fades.forEach(n => n.style.setProperty('--f', (1 - cl(q / .16)).toFixed(3)));
+  // '듣고, 정리하고, 만듭니다.' 가 한 줄씩 밀려 들어옴
+  says.forEach((n, i) => {
+    const u = reduce ? (q > .3 + i * .12 ? 1 : 0) : sm(cl((q - .26 - i * .13) / .24));
+    n.style.setProperty('--x', ((1 - u) * 26).toFixed(2) + 'vw');
+    n.style.setProperty('--o', u.toFixed(3));
+  });
+  saysCap.style.opacity = sm(cl((q - .74) / .14)).toFixed(3);
+  // 점: 고정 구간에서 흩어진 요구 → 하나로, 마지막 연락 구간에서 다시 살짝 풀림
+  const past = cl((y - (M.heroH - vh)) / (vh * .8));
+  const end = sm(cl((y + vh - M.contactTop) / vh));
+  field.kT = sm(cl((q - .04) / .62)) * (1 - end * .72);
+  field.alphaT = mix(1, .17, sm(past)) + end * .65;
+  field.cyT = mix(.6, .5, sm(past));
+  field.voicesT = y < M.heroH - vh * .5 ? 1 : 0;
+  field.ampT = mix(1, .8, sm(past)) + end * .4;
+  // 위 메뉴
+  topbar.classList.toggle('off', q < .55);
+  topbar.classList.toggle('solid', y > M.heroH - vh * .5);
+  // 연대기: 화면 가운데를 지나는 연도를 밝힘
+  let yi = -1;
+  M.yrTops.forEach((top, i) => { if (y + vh * .55 >= top) yi = i; });
+  if (yi !== curYb) { curYb = yi; ybs.forEach((b, i) => b.classList.toggle('now', i === yi)); }
+  // 지금 보고 있는 칸
+  let now = '';
+  M.secTops.forEach((top, i) => { if (y >= top - vh * .45) now = secs[i].id; });
+  if (now !== curNav) {
+    curNav = now;
+    navLinks.forEach(a => a.setAttribute('aria-current', a.dataset.nav === now ? 'true' : 'false'));
+  }
+}
+
+function hud(dt) {
+  const k = field.k;
+  const one = k > .97;
+  hudK.textContent = one ? 'One product' : 'Voices';
+  hudVal.textContent = one ? '' : Math.max(2, Math.round(ps.length * Math.pow(1 - k, 1.6))).toLocaleString('en-US');
+  bars.forEach((b, i) => {
+    const noise = .25 + .75 * Math.abs(Math.sin(T * 9 + i * 2.1) * Math.sin(T * 5.3 + i * 1.3));
+    const sig = .5 + .45 * Math.sin(i / bars.length * TAU - T * 2.2);
+    b.style.height = (4 + 18 * mix(noise, sig, k)).toFixed(1) + 'px';
+  });
+}
+
+/* ───────── 커서 ───────── */
+const cur = $('.cursor');
+const cpos = { x: -100, y: -100, tx: -100, ty: -100 };
+addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse' && e.pointerType !== 'pen' && e.pointerType !== 'touch') return;
+  mouse.x = e.clientX; mouse.y = e.clientY; mouse.onT = 1; mouse.last = performance.now();
+  mouse.touch = e.pointerType === 'touch';
+  cpos.tx = e.clientX; cpos.ty = e.clientY;
+  if (finePointer) cur.classList.add('on');
+}, { passive: true });
+addEventListener('pointerdown', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.onT = 1; mouse.last = performance.now(); }, { passive: true });
+document.addEventListener('mouseout', e => { if (!e.relatedTarget) { mouse.onT = 0; cur.classList.remove('on'); } });
+document.addEventListener('pointerover', e => cur.classList.toggle('big', !!e.target.closest('[data-cursor], a, button')));
+
+/* ───────── 한 번에 돌리는 루프 ───────── */
+let prev = performance.now();
+function loop(now) {
+  const dt = Math.min(.05, (now - prev) / 1000); prev = now;
+  if (lenis) lenis.raf(now);
+  const y = scrollY;
+  if (y !== lastY) { lastY = y; onScroll(y); }
+  const f = reduce ? 1 : .09;
+  field.k += (field.kT - field.k) * f;
+  field.alpha += (field.alphaT - field.alpha) * f;
+  field.cy += (field.cyT - field.cy) * f;
+  field.amp += (field.ampT - field.amp) * f;
+  field.voices += (field.voicesT - field.voices) * f;
+  if (mouse.touch && now - mouse.last > 900) mouse.onT = 0;
+  mouse.on += (mouse.onT - mouse.on) * .05;
+  if (!detailOpen) drawField(dt);
+  hud(dt);
+  vis.forEach(v => { if (v.on) drawVis(v, dt); });
+  if (ppos.show) {
+    const pw = 300, ph = 188;
+    let tx = mouse.x + 24 + pw > W - 12 ? mouse.x - 24 - pw : mouse.x + 24, ty = mouse.y - ph - 28 < 70 ? mouse.y + 32 : mouse.y - ph - 28;
+    if (ppos.side >= 0) { tx = ppos.side; ty = cl(mouse.y - ph / 2, 300, H - ph - 20); }
+    ppos.x += (tx - ppos.x) * .16; ppos.y += (ty - ppos.y) * .16;
+    peek.style.transform = `translate3d(${ppos.x.toFixed(1)}px, ${ppos.y.toFixed(1)}px, 0)`;
+  }
+  if (finePointer) {
+    cpos.x += (cpos.tx - cpos.x) * .2; cpos.y += (cpos.ty - cpos.y) * .2;
+    cur.style.transform = `translate3d(${cpos.x.toFixed(1)}px, ${cpos.y.toFixed(1)}px, 0)`;
+  }
+  requestAnimationFrame(loop);
+}
+
+/* ───────── 화면에 들어오면 나타남 + 숫자 ───────── */
+function countUp(el) {
+  const to = +el.dataset.to, dur = reduce ? 0 : 1600, t0 = performance.now();
+  const step = n => { const p = dur ? cl((n - t0) / dur) : 1, e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(to * e); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function countDown(el) {
+  const from = +el.dataset.from, to = +el.dataset.to, dur = reduce ? 0 : 2400, t0 = performance.now();
+  const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const step = n => { const p = dur ? cl((n - t0) / dur) : 1, e = 1 - Math.pow(1 - p, 5); el.textContent = fmt(mix(from, to, e)); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+  }), { rootMargin: '0px 0px -10% 0px', threshold: .12 });
+  $$('.rv, .lines').forEach(n => io.observe(n));
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    e.target.classList.contains('countdown') ? countDown(e.target) : countUp(e.target);
+  }), { threshold: .6 });
+  $$('.count, .countdown').forEach(n => cio.observe(n));
+} else {
+  $$('.rv, .lines').forEach(n => n.classList.add('in'));
+  $$('.count').forEach(n => n.textContent = n.dataset.to);
+  $$('.countdown').forEach(n => n.textContent = '00:03');
+}
+
+/* ───────── 연대기 자료 (사진 · 영상 · 파일) ───────── */
+$$('.ev.has-media').forEach(ev => {
+  const vids = $$('video', ev);
+  if (!vids.length) return;
+  const play = () => vids.forEach(v => { const p = v.play(); if (p) p.catch(() => {}); });
+  const stop = () => vids.forEach(v => v.pause());
+  if (matchMedia('(hover: hover)').matches) { ev.addEventListener('pointerenter', play); ev.addEventListener('pointerleave', stop); }
+  else if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? play() : stop()), { threshold: .4 }).observe(ev);
+});
+// 아직 파일이 없으면 다운로드 버튼을 '준비 중'으로
+$$('.mdoc').forEach(a => {
+  fetch(a.getAttribute('href'), { method: 'HEAD' }).then(r => { if (!r.ok) throw 0; }).catch(() => {
+    a.classList.add('missing'); a.removeAttribute('download'); a.removeAttribute('href');
+    const l = $('.mdl', a); if (l) l.textContent = 'PDF 준비 중';
+  });
+});
+
+/* ───────── 이메일 복사 ───────── */
+const mailBtn = $('.mail'), mailTip = $('.mail-tip');
+mailBtn.addEventListener('click', async () => {
+  const email = mailBtn.dataset.email;
+  try { await navigator.clipboard.writeText(email); mailTip.textContent = 'copied ✓'; }
+  catch (e) { location.href = 'mailto:' + email; return; }
+  clearTimeout(mailBtn._t); mailBtn._t = setTimeout(() => mailTip.textContent = 'click to copy', 2200);
+});
+
+/* ───────── 프로젝트 상세 ───────── */
+const WORKS = {
+  payroll: {
+    title: '급여 검증 프로세스 AI 자동화', client: '일본 B2B 급여 지급 기업',
+    meta: ['QueryPie · Product Manager', '2025 – 2026 · 6개월', '고객사 대응 · 요구사항 분석 · QA · 리스크 관리'],
+    lead: '수십 개 고객사의 급여 담당자가 직원 1인당 보험료, 소급 적용 여부 등 100개 이상 항목을 수작업과 레거시 방식으로 검증하던 업무를 AI로 자동화하는 프로젝트입니다. 저는 PM으로 참여해 고객사 대응, 요구사항 분석, QA와 리스크 관리를 맡았습니다.',
+    stats: [['100+', '고객사와 함께 체계화한 검증 항목'], ['6명', '삿포로 현지에서 함께 정리한 고객사 담당자'], ['20분 → 3초', '원인을 찾아 개선을 요청한 응답 시간']],
+    issues: [
+      ['낯선 일본 급여 도메인이라 요구사항이 불명확했습니다', '도메인을 먼저 공부한 뒤 삿포로 2주 출장에서 고객사 PM 2명, 개발자 1명, 급여 담당자 3명과 직접 이야기하며 검증 항목과 기준을 체계화했습니다. (예: 사회보험료 → 고용보험, 건강보험 등 하위 항목)'],
+      ['개발자와 화면 흐름·버튼 동작을 빠르고 정확하게 맞춰야 했습니다', '문서만으로는 한계가 있어, AI 도구로 백오피스 화면 5개를 실제처럼 움직이는 시안으로 만들었습니다. 개발자와 실물을 보며 직관적으로 소통할 수 있었습니다.'],
+      ['AI agent 쿼리가 20분 가까이 걸렸습니다', '여러 테이블에 흩어진 검증 항목 조회가 원인임을 찾아 개발자에게 인덱스 추가를 요청했고, 약 3초로 줄었습니다.'],
+      ['agent 버전을 올릴 때마다 사용자 쪽 버그가 생겼습니다', '고객에게 전달하기 전에 직접 테스트하며 버그를 찾아 수정을 요청하는 리스크 관리를 맡았습니다.']
+    ],
+    secs: [
+      ['진행 방식', '시니어 PM과 함께 자동화 프로세스를 기획했습니다. 애자일 스프린트 단위로 Jira·Confluence에서 작업과 일정을 관리하고 팀 간 소통을 도왔으며, SQL로 급여 데이터를 직접 조회하며 요구사항을 검증했습니다.'],
+      ['실패한 경험', '빨리 해결해 주고 싶은 마음에, 고객의 진짜 요구보다 제가 효율적이라고 생각한 방식을 앞세웠습니다. 완성된 AI agent를 한 번에 보여주려고 기획 범위를 크게 잡았지만, 고객이 원한 것은 불완전해도 당장 작동하는 결과물이었습니다.'],
+      ['배운 점', ['주니어 PM에게 가장 중요한 태도는 잘 듣는 것. 시니어 PM이 왜 그런 결정을 내렸는지 고민하고 귀 기울이며 판단의 기준을 배웠습니다.', '제가 만들고 싶은 제품이 아니라, 고객이 정말 필요로 하는 것을 먼저 들어야 합니다.']]
+    ]
+  },
+  onoff: {
+    title: 'On Off', client: '가족 일상 공유 앱 · 창업',
+    meta: ['Founder · PO', '2026.07 – 현재', '디자이너 2 · 개발자 1'],
+    lead: '따로 사는 자식 세대와 부모 세대를 잇는 가족만의 공간입니다. 매일 올라오는 질문에 답하며 일상을 쉽게 나누고, 그 기록이 쌓인 가족 공간을 함께 꾸미며 즐겁게 유대를 쌓습니다.',
+    stats: [['15명', '1차 버전 지인 테스터'], ['3개', '덜어내고 남긴 핵심 기능'], ['2026.11', 'iOS · Android 출시 예정']],
+    issues: [
+      ['1차 버전을 테스터 15명에게 배포했지만 공유 빈도가 낮았습니다', '가족 캘린더, 채팅, 전등 캐릭터의 불을 켜고 끄는 공유 장치를 담았는데, 피드백을 들어 보니 일상 공유를 이끄는 장치가 약했고 캘린더·채팅은 사용자가 아니라 제가 넣고 싶던 기능이었습니다.'],
+      ['무엇을, 어떻게 나눠야 할지 사용자가 몰랐습니다', '"오늘 본 저녁 하늘을 찍어주세요"처럼 공유할 일상을 구체적으로 묻는 방식으로 바꾸고, 기능을 일상 공유 · 기록 갤러리 · 캐릭터 꾸미기 세 가지로 줄였습니다.']
+    ],
+    secs: [
+      ['비전', '전 세계 모든 가족의 친밀함을 강화해, 독거노인 고독사 같은 사회 문제를 없애는 것.'],
+      ['팀 운영', '디자이너 2명, 개발자 1명과 Jira·GitHub로 스프린트를 나눠 애자일 방식으로 개발하고 있습니다. KU 창업클럽 6기에서 사업계획서와 IR 피칭으로 투자 유치도 진행 중입니다.'],
+      ['현황', 'iOS·Android 앱 심사 중 · 2026년 11월 출시 예정']
+    ]
+  },
+  spec: {
+    title: '스펙 문서 생성 AI 자동화', client: '일본 대형 자동차 기업',
+    meta: ['QueryPie · Product Manager', '1개월', '고객사 대응 · 요구사항 정의'],
+    lead: '차량별 커넥티드 서비스 지원 스펙 문서를 여러 부서가 돌려 가며 각자 파트를 채우고 검토·전달하던 과정에서 생기는 병목을 AI로 자동화하는 프로젝트입니다. 저는 PM으로 참여해 고객사의 요구사항을 구체화했습니다.',
+    issues: [
+      ['고객사도 원하는 요구사항을 명확히 정리하지 못한 상태였습니다', '고객사가 실제로 쓰던 문서와 작업 과정을 직접 분석하고, 필요한 질문을 먼저 만들어 전달하며 요구사항을 구체화했습니다.']
+    ],
+    secs: []
+  },
+  security: {
+    title: 'DB 보안 리포트 생성 AI 자동화', client: '한국 대형 항공사',
+    meta: ['QueryPie · Product Manager', '1개월', '제안 · 경쟁사 분석'],
+    lead: '보안팀이 DB를 직접 들여다보며 수작업으로 확인하던 보안 점검을, AI가 자동으로 만드는 리포트로 바꾸는 서브 프로젝트입니다. 저는 PM으로서 고객사에 이 제안을 설득하는 일을 맡았습니다.',
+    issues: [
+      ['고객사가 관심을 보이지 않던 제안을 설득해야 했습니다', '프로젝트가 성공하려면 고객사가 직접 해야 할 일이 없어야 한다고 보고, 그 일을 아예 없애는 방향으로 설계했습니다. 경쟁사 서비스와 비교 분석해 고객사의 가려운 부분을 찾아 결과로 제시했습니다.']
+    ],
+    secs: []
+  }
+};
+const ORDER = ['payroll', 'onoff', 'spec', 'security'];
+const detail = $('#detail'), dPanel = $('.detail-panel', detail), dInner = $('.d-inner', detail), dCount = $('.d-count', detail);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let detailOpen = false, openedInPage = false, lastFocus = null;
+
+function renderDetail(key) {
+  const w = WORKS[key], i = ORDER.indexOf(key), next = ORDER[(i + 1) % ORDER.length];
+  dCount.textContent = `Work ${String(i + 1).padStart(2, '0')} / ${String(ORDER.length).padStart(2, '0')}`;
+  let h = `<header class="d-head">
+    <p class="d-client mono d-up">${esc(w.client)}</p>
+    <h2 class="d-title d-up" id="d-title" style="--d:.05s">${esc(w.title)}</h2>
+    <div class="d-meta mono d-up" style="--d:.1s">${w.meta.map(m => `<span>${esc(m)}</span>`).join('')}</div>
+  </header>
+  <p class="d-lead d-up" style="--d:.15s">${esc(w.lead)}</p>`;
+  if (w.stats) h += `<div class="d-stats d-up" style="--d:.2s;--n:${w.stats.length}">${w.stats.map(s => `<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('')}</div>`;
+  else h += `<div style="height:clamp(36px,6vh,56px)"></div>`;
+  h += `<section class="d-sec d-up" style="--d:.25s"><h3 class="mono">들은 것 → 푼 방법</h3><ol class="issues">${w.issues.map(x => `<li class="issue"><div class="p"><span class="lbl mono">Heard</span><strong>${esc(x[0])}</strong></div><div class="s"><span class="lbl mono">Solved</span><p>${esc(x[1])}</p></div></li>`).join('')}</ol></section>`;
+  w.secs.forEach(s => {
+    const body = Array.isArray(s[1]) ? `<ul class="learn">${s[1].map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : `<p>${esc(s[1])}</p>`;
+    h += `<section class="d-sec d-up" style="--d:.3s"><h3 class="mono">${esc(s[0])}</h3>${body}</section>`;
+  });
+  h += `<a class="d-next d-up" href="#work/${next}" style="--d:.35s" data-cursor><span><small class="mono">Next work</small><strong>${esc(WORKS[next].title)}</strong></span><i>→</i></a>`;
+  dInner.innerHTML = h;
+}
+
+function openDetail(key) {
+  if (!WORKS[key]) return;
+  if (!detailOpen) lastFocus = document.activeElement;
+  const was = detailOpen;
+  renderDetail(key);
+  dPanel.scrollTop = 0;
+  detailOpen = true;
+  if (lenis) lenis.stop(); else document.documentElement.style.overflow = 'hidden';
+  detail.setAttribute('aria-hidden', 'false');
+  if (was) { $$('.d-up', detail).forEach(n => { n.style.transition = 'none'; n.style.opacity = 0; void n.offsetWidth; n.style.transition = ''; n.style.opacity = ''; }); }
+  requestAnimationFrame(() => { detail.classList.add('open'); setTimeout(() => dPanel.focus({ preventScroll: true }), 50); });
+  document.title = WORKS[key].title + ' · 신대근';
+}
+function closeDetail() {
+  if (!detailOpen) return;
+  detailOpen = false;
+  detail.classList.remove('open');
+  detail.setAttribute('aria-hidden', 'true');
+  if (lenis) lenis.start(); else document.documentElement.style.overflow = '';
+  document.title = '신대근 · Product Owner';
+  if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+}
+function routeFromHash() {
+  const m = location.hash.match(/^#work\/(\w+)/);
+  if (m && WORKS[m[1]]) openDetail(m[1]); else { openedInPage = false; closeDetail(); }
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#work/"]');
+  if (a) {
+    // 상세 안에서 '다음 작업'으로 넘어갈 땐 기록을 쌓지 않음 → 닫기 한 번이면 원래 자리로
+    if (detailOpen) { e.preventDefault(); history.replaceState(null, '', a.getAttribute('href')); routeFromHash(); }
+    else openedInPage = true;
+    return;
+  }
+  if (e.target.closest('[data-close]')) {
+    e.preventDefault();
+    if (openedInPage) history.back();
+    else { history.replaceState(null, '', location.pathname + location.search); closeDetail(); }
+  }
+});
+addEventListener('hashchange', routeFromHash);
+addEventListener('keydown', e => {
+  if (e.key === 'Escape' && detailOpen) $('.d-close', detail).click();
+  if (e.key === 'Tab' && detailOpen) {
+    const f = $$('a[href], button', detail).filter(n => n.offsetParent !== null);
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  }
+});
+
+/* ───────── 시작 ───────── */
+// 이름 글자: 흩어진 자리에서 모여듦
+$$('.wordmark .ch').forEach((c, i) => { c.style.setProperty('--dx', ((Math.random() - .5) * 60).toFixed(0) + 'px'); c.style.setProperty('--d', (.15 + i * .07).toFixed(2) + 's'); });
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+sizeField(); measure();
+let lastSmall = innerWidth < 640;
+addEventListener('resize', () => {
+  const sm640 = innerWidth < 640;
+  if (sm640 !== lastSmall) { lastSmall = sm640; ps = []; }
+  voiceEls.forEach(v => v._w = 0);
+  sizeField(); measure(); lastY = -1;
+});
+if ('ResizeObserver' in window) new ResizeObserver(() => { measure(); lastY = -1; }).observe(document.body);
+const start = () => {
+  document.documentElement.classList.add('ready');
+  setTimeout(() => document.documentElement.classList.add('intro-done'), 2200);
+  measure();
+  const h = location.hash;
+  if (/^#work\//.test(h)) routeFromHash();
+  else if (h && document.getElementById(h.slice(1))) scrollToEl(document.getElementById(h.slice(1)), true);
+};
+(document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]) : Promise.resolve()).then(start);
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
